@@ -1,0 +1,47 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,booktabs}
+\newcommand{\param}[1]{\texttt{\detokenize{#1}}}
+\title{Assignment 2: Experimental Results\\Historical 17-Parameter Summary}
+\author{Mathematical Methods in Uncertainty Quantification}
+\date{}
+\begin{document}\maketitle
+\textbf{Historical version.} This earlier summary held \param{snw_att} fixed. The current experiment includes all 18 parameters; use the main experiment report for the current ranking and plan.
+\section{Baseline and method}
+The Assignment 1 HBV001a model and calibrated vector yield \(J=1-\mathrm{NSE}=0.0927763\) and \(\mathrm{NSE}=0.907224\), with zero warm-up. Original calibration bounds are hard limits. One parameter changes at a time, by at most 20\% per side, with 10 equally spaced points on each side and a baseline point. Seventeen parameters were varied. The temperature threshold was held at $-0.00604556\,^\circ\mathrm C$ and its sensitivity was not evaluated in this historical run.
+\section{One-at-a-time ranking}
+The score is the mean absolute relative change in \(J\) over the 20 non-baseline points. Feasible ranges differ, so the ranking is not an equal-range comparison.
+\begin{center}\small\begin{tabular}{rlrr}\toprule
+Rank & Parameter & Mean absolute change & Perturbation range\\\midrule
+1 & \param{sl0_fcy} & 5.8126\% & $-18.22\%$ to $+20.00\%$\\
+2 & \param{snw_pmf} & 4.7719\% & $-20.00\%$ to $+20.00\%$\\
+3 & \param{lrr_dre} & 4.2247\% & $-20.00\%$ to $+9.52\%$\\
+4 & \param{sl0_bt0} & 0.70836\% & $-20.00\%$ to $+20.00\%$\\
+5 & \param{sl0_dth} & 0.6923\% & $-20.00\%$ to $+1.91\%$\\
+6 & \param{snw_amf} & 0.49607\% & $-20.00\%$ to $+20.00\%$\\
+7 & \param{urr_ulc} & 0.33188\% & $-20.00\%$ to $+20.00\%$\\
+8 & \param{urr_wsr} & 0.10211\% & $-20.00\%$ to $+0.90\%$\\
+9 & \param{snw_dth} & 0.040245\% & $-20.00\%$ to $+16.44\%$\\
+10 & \param{sl0_pwp} & 0.0048632\% & $-20.00\%$ to $+8.27\%$\\
+11 & \param{lrr_dth} & 0.0034587\% & $-20.00\%$ to $+20.00\%$\\
+12 & \param{lrr_lct} & 0.0026344\% & $-20.00\%$ to $+20.00\%$\\
+13 & \param{urr_uct} & 0.0014379\% & $-20.00\%$ to $+20.00\%$\\
+14 & \param{urr_dth} & 0.00095492\% & $-20.00\%$ to $+20.00\%$\\
+15 & \param{urr_ndr} & 0.00075207\% & $-20.00\%$ to $+20.00\%$\\
+16 (tie) & \param{urr_tdh} & 0\% & $-20.00\%$ to $+20.00\%$\\
+16 (tie) & \param{urr_tdr} & 0\% & $-20.00\%$ to $+20.00\%$\\
+\bottomrule\end{tabular}\end{center}
+The three highest-ranked parameters were \param{sl0_fcy}, \param{snw_pmf}, and \param{lrr_dre}. \param{urr_tdh} and \param{urr_tdr} had no objective change at the tested points; this is not a universal conclusion.
+\section{Combined perturbations of the top three}
+Twelve two-parameter and eight three-parameter endpoint combinations were evaluated with all other values fixed. Lower and upper changes were $-18.22\%$ and $+20\%$ for \param{sl0_fcy}, $-20\%$ and $+20\%$ for \param{snw_pmf}, and $-20\%$ and $+9.52\%$ for \param{lrr_dre}. Positive changes below indicate higher \(J\) and lower NSE.
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+Parameter pair & $-/-$ & $-/+$ & $+/-$ & $+/+$\\\midrule
+\param{sl0_fcy} / \param{snw_pmf} & 26.75\% & 25.24\% & 31.20\% & 25.78\%\\
+\param{sl0_fcy} / \param{lrr_dre} & 20.09\% & 23.05\% & 49.52\% & 12.48\%\\
+\param{snw_pmf} / \param{lrr_dre} & 34.86\% & 16.29\% & 29.52\% & 12.83\%\\\bottomrule
+\end{tabular}\end{center}
+For \param{sl0_fcy} / \param{snw_pmf} / \param{lrr_dre}, the eight changes were $-/-/-$: 34.06\%, $-/-/+$: 34.62\%, $-/+/-$: 32.13\%, $-/+/+$: 34.67\%, $+/-/-$: 64.92\%, $+/-/+$: 26.13\%, $+/+/-$: 58.82\%, and $+/+/+$: 22.08\%.
+\section{Partial cancellation and limits}
+At the upper endpoints of \param{sl0_fcy} and \param{lrr_dre}, individual changes were 16.47\% and 2.92\%, summing to 19.38\%; the actual joint change was 12.48\%, about 6.90 percentage points lower and below the first individual change. With all three at upper endpoints, the individual effects sum to 29.13\% and the joint change is 22.08\%. The 20 endpoint combinations did not return to baseline; stronger cancellation at intermediate values remains possible. A three-parameter departure from additivity includes pairwise and higher-order effects, not just a pure three-way effect.
+These results use one calibrated vector and one objective; feasible ranges differ, some positive ranges are narrow, and the fixed threshold was not ranked. The similar-NSE/different-seed question remains open. Data and scripts are in the accompanying Assignment 2 English folder.
+\end{document}
